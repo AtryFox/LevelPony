@@ -1,4 +1,4 @@
-const { Command } = require('discord.js-commando');
+const {Command} = require('discord.js-commando');
 
 module.exports = class RankCommand extends Command {
     constructor(client) {
@@ -9,5 +9,9 @@ module.exports = class RankCommand extends Command {
             description: 'Replies with a Message.',
             examples: ['reply']
         });
+    }
+
+    async run(message) {
+
     }
 };
