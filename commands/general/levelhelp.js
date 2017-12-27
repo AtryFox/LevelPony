@@ -4,9 +4,9 @@ const PonyUtils = require('../../lib/PonyUtils');
 module.exports = class RewardsCommand extends Command {
     constructor(client) {
         super(client, {
-            name: 'help',
+            name: 'levelhelp',
             group: 'general',
-            memberName: 'help',
+            memberName: 'levelhelp',
             description: 'Shows you command usages',
             userPermissions: ['ADMINISTRATOR'],
             examples: ['help'],
