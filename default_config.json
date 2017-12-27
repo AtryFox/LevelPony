@@ -1,10 +1,7 @@
 {
-  // Discord login token
   "TOKEN": "",
 
-  // Admins users (IDs)
   "ADMIN": [""],
 
-  // Default command prefix
   "PREFIX": "!"
 }
