@@ -44,4 +44,6 @@ client.on('message', (message) => {
     client.levels.giveGuildUserExp(message.guild.members.get(message.author.id), message);
 });
 
-client.login(config.TOKEN);
+client.login(config.TOKEN).catch((err) => {
+    client.logger.error(err);
+});
