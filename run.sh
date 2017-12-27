@@ -1,5 +1,11 @@
 #! /bin/bash
-sh ./prepare.sh
+git reset HEAD --hard
+git pull
+
+chmod +x ./run.sh
+chmod +x ./run_sharding.sh
+
+npm install
 
 dir="$(basename $PWD)"
 

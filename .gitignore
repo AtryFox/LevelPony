@@ -1,5 +1,7 @@
 .idea
 node_modules
 
-config.json
+data/config.json
 bot.log
+
+*.sqlite3

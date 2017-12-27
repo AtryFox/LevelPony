@@ -2,7 +2,7 @@ const {SQLiteProvider} = require('discord.js-commando');
 const PonyCommandoClient = require('./lib/PonyCommandoClient');
 const path = require('path');
 const sqlite = require('sqlite');
-const config = require('./config.json');
+const config = require('./data/config.json');
 
 const client = new PonyCommandoClient({
     commandPrefix: config.PREFIX,
