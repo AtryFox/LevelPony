@@ -1,4 +1,4 @@
-const {SQLiteProvider} = require('discord.js-commando');
+const {FriendlyError, SQLiteProvider} = require('discord.js-commando');
 const {MessageEmbed} = require('discord.js');
 const {stripIndents} = require('common-tags');
 const moment = require('moment');
@@ -7,6 +7,7 @@ const sqlite = require('sqlite');
 const config = require('./data/config.json');
 
 const PonyCommandoClient = require('./lib/PonyCommandoClient');
+const PonyUtils = require('./lib/PonyUtils');
 
 const client = new PonyCommandoClient({
     commandPrefix: config.PREFIX,
@@ -20,13 +21,13 @@ sqlite.open(path.join(__dirname, "/data/settings.sqlite3")).then((db) => {
     client.setProvider(new SQLiteProvider(db));
 });
 
-/*client.registry
+client.registry
     .registerDefaultTypes()
     .registerGroups([
         ['levels', 'Levels'],
-        ['admin', 'Admin'],
+        ['general', 'General'],
     ])
-    .registerCommandsIn(path.join(__dirname, 'commands'));*/
+    .registerCommandsIn(path.join(__dirname, 'commands'));
 
 client.on('ready', async () => {
     client.logger.info('Logged in!');
@@ -37,33 +38,12 @@ client.on('ready', async () => {
 client.on('guildCreate', async (guild) => {
     if (!guild.available) return;
 
-    const info = await client.getInfo();
-
     const embed = new MessageEmbed({
         author: {
             name: "Hello, I'm Level Pony!",
             iconURL: client.user.displayAvatarURL()
         },
-        description: stripIndents`You've just added me to **${guild.name}**. 
-        
-        Here is some information about myself:
-        
-        **LEVEL SYSTEM**
-        __Get current level:__ \`${client.commandPrefix}rank\`
-        __View leaderboard:__ \`${client.commandPrefix}leaderboard\`
-        
-        **SETTINGS**
-        __Change command prefix:__ \`${client.commandPrefix}prefix [new prefix]\`
-        __Reset command prefix:__ \`${client.commandPrefix}prefix default\`
-        __Disable command prefix:__ \`${client.commandPrefix}prefix none\`
-        Note: When you disable the command prefix, you have to prefix all commands with \`@${client.user.tag}\`, eg. \`@${client.user.tag} rank\`.
-        
-        **OTHER**
-        __Help:__ \`${client.commandPrefix}help\`
-        
-        **INFORMATION**
-        __GitHub Repository:__ [DerAtrox/LevelPony](https://github.com/DerAtrox/LevelPony)
-        __Version running:__ [${info.version}](https://github.com/DerAtrox/LevelPony/commit/${info.version})`,
+        description: `You've just added me to **${guild.name}**.\n\nHere is some information about myself:\n\n${await PonyUtils.getHelpText(guild)}`,
 
         timestamp: moment().format('LLL'),
         footer: {
@@ -88,6 +68,15 @@ client.on('message', (message) => {
     }
 
     client.levels.giveGuildUserExp(message.guild.members.get(message.author.id), message);
+});
+
+client.on('commandError', (cmd, err) => {
+    if (err instanceof FriendlyError) return;
+    client.logger.error(`Error in command ${cmd.groupID }: ${cmd.memberName} ${err}`);
+});
+
+client.on('commandBlocked', (msg, reason) => {
+    client.logger.warn(`Command [${msg.command.groupID}:${msg.command.memberName}] blocked. Reason: ${reason}`);
 });
 
 client.login(config.TOKEN).catch((err) => {

@@ -5,7 +5,7 @@ module.exports = class PrefixCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'prefix',
-            group: 'admin',
+            group: 'general',
             memberName: 'prefix',
             description: 'Shows or sets the command prefix.',
             format: '[prefix/"default"/"none"]',
