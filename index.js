@@ -1,6 +1,5 @@
 const {FriendlyError, SQLiteProvider} = require('discord.js-commando');
 const {MessageEmbed} = require('discord.js');
-const {stripIndents} = require('common-tags');
 const moment = require('moment');
 const path = require('path');
 const sqlite = require('sqlite');

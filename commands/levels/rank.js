@@ -58,6 +58,5 @@ module.exports = class RankCommand extends Command {
         });
 
         message.channel.send({embed});
-
     }
 };

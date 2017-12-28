@@ -23,8 +23,6 @@ module.exports = class RankCommand extends Command {
         const pages = Math.ceil(count.count / 10) - 1;
         let page = 0;
 
-        console.log(count);
-
         async function genData(page) {
             let output = "";
 
