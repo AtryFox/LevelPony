@@ -67,6 +67,10 @@ client.on('message', async (message) => {
         return;
     }
 
+    if(!message.guild){
+        return
+    }
+
     await client.levels.giveGuildUserExp(message.guild.members.get(message.author.id), message);
 
 });

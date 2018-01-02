@@ -8,7 +8,7 @@ module.exports = class RewardsCommand extends Command {
             group: 'admin',
             memberName: 'reward',
             description: 'Manages the reward system',
-            examples: ['reward'],
+            examples: ['reward add RewardRole 10', 'reward del Another 15'],
             guildOnly: true,
             userPermissions: ['ADMINISTRATOR'],
             args: [
