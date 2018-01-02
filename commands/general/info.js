@@ -52,7 +52,7 @@ module.exports = class RankCommand extends Command {
         }
 
         if ('timestamp' in info) {
-            embed.addField('Commited on', (moment(info.timestamp, 'YYYY-MM-DD HH:mm:ss Z').locale('de').fromNow()), false);
+            embed.addField('Committed', (moment(info.timestamp, 'YYYY-MM-DD HH:mm:ss Z').fromNow()), false);
         }
 
         message.channel.send({embed});
