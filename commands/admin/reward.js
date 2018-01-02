@@ -5,7 +5,7 @@ module.exports = class RewardsCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'reward',
-            group: 'general',
+            group: 'admin',
             memberName: 'reward',
             description: 'Manages the reward system',
             examples: ['reward'],

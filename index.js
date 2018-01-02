@@ -23,8 +23,9 @@ sqlite.open(path.join(__dirname, "/data/settings.sqlite3")).then((db) => {
 client.registry
     .registerDefaultTypes()
     .registerGroups([
-        ['levels', 'Levels'],
         ['general', 'General'],
+        ['levels', 'Levels'],
+        ['admin', 'Admin']
     ])
     .registerCommandsIn(path.join(__dirname, 'commands'));
 
@@ -53,7 +54,7 @@ client.on('guildCreate', async (guild) => {
     guild.owner.send({embed});
 });
 
-client.on('message', (message) => {
+client.on('message', async (message) => {
     if (message.author.id === client.user.id) {
         return;
     }
@@ -63,10 +64,11 @@ client.on('message', (message) => {
     }
 
     if (message.author.bot) {
-        return
+        return;
     }
 
-    client.levels.giveGuildUserExp(message.guild.members.get(message.author.id), message);
+    await client.levels.giveGuildUserExp(message.guild.members.get(message.author.id), message);
+
 });
 
 client.on('commandError', (cmd, err) => {

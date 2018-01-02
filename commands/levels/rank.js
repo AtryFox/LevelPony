@@ -10,6 +10,7 @@ module.exports = class RankCommand extends Command {
             memberName: 'rank',
             description: 'Displays the current rank and level progress',
             examples: ['rank'],
+            guildOnly: true,
             throttling: {
                 usages: 1,
                 duration: 600

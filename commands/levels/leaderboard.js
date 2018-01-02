@@ -10,6 +10,7 @@ module.exports = class RankCommand extends Command {
             memberName: 'leaderboard',
             description: 'Displays the leaderboard of the guild',
             examples: ['leaderboard'],
+            guildOnly: true,
             throttling: {
                 usages: 1,
                 duration: 1800
