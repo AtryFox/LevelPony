@@ -21,7 +21,7 @@ module.exports = class RankCommand extends Command {
     async run(message) {
         const info = await message.client.getInfo();
 
-        const linkLastCommit = `https://github.com/DerAtrox/Bronies.de-DSB/commit/${info.version}`;
+        const linkLastCommit = `https://github.com/DerAtrox/LevelPony/commit/${info.version}`;
 
         let embed = new MessageEmbed({
             author: {
