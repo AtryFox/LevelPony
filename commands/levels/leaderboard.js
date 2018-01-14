@@ -65,7 +65,7 @@ module.exports = class RankCommand extends Command {
         );
 
         collector.on('collect', async (r) => {
-            r.users.get(message.author.id).remove();
+            r.users.remove(message.author.id);
 
             switch (r.emoji.name) {
                 case '1⃣':
@@ -78,7 +78,7 @@ module.exports = class RankCommand extends Command {
                     page++;
                     break;
                 case '⬅':
-                    if (page < 0) return;
+                    if (page <= 0) return;
 
                     page--;
                     break;
