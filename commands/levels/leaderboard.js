@@ -65,7 +65,7 @@ module.exports = class RankCommand extends Command {
         );
 
         collector.on('collect', async (r) => {
-            r.remove(message.author.id);
+            r.users.get(message.author.id).remove();
 
             switch (r.emoji.name) {
                 case '1⃣':
