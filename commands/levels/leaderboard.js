@@ -78,7 +78,7 @@ module.exports = class RankCommand extends Command {
                     page++;
                     break;
                 case '⬅':
-                    if (page < 0) return;
+                    if (page <= 0) return;
 
                     page--;
                     break;
