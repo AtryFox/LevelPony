@@ -15,11 +15,9 @@ module.exports = class UpdateCommand extends Command {
 
     async run(message, args) {
         const members = message.guild.members;
-
-        message.client.levels.updateUserRoles(message.guild.members.get("332188565150629890"), message);
-
-        /*members.forEach(member => {
+        
+        members.forEach(member => {
             message.client.levels.updateUserRoles(member, message);
-        })*/
+        })
     }
 };
