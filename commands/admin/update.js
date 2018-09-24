@@ -17,7 +17,7 @@ module.exports = class UpdateCommand extends Command {
         const members = message.guild.members;
         
         members.forEach(member => {
-            message.client.levels.updateUserRoles(member, message);
+            message.client.levels.updateUserRoles(member, message, true);
         })
     }
 };
